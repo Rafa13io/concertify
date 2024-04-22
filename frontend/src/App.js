@@ -15,8 +15,10 @@ import {
   ProfileSecurity,
 } from "./Profile";
 import ErrorPage from "./ErrorPage";
-import { EventList } from "./Event";
+import EventList from "./event/EventList";
 import { Login, Register } from "./Login";
+import NavBar from "./NavBar";
+import EventPage from "./event/EventPage";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +59,10 @@ const router = createBrowserRouter([
             element: <ProfileSecurity />,
           },
         ],
+      },
+      {
+        path: "/event/:id",
+        element: <EventPage />,
       },
     ],
   },
