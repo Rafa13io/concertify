@@ -1,26 +1,42 @@
-.event-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.event-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  padding-top: 0;
+}
 
-  background-color: blue;
+.event-title {
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.event-date {
+  margin-bottom: 0.1em;
 }
 
 .event-location {
   font-style: italic;
-  margin-bottom: 10px;
-
-  background-color: red;
-}
-
-.event-date {
-  margin-bottom: 10px;
-
-  background-color: green;
+  margin-bottom: 0.1em;
 }
 
 .event-desc {
-  margin-top: 20px;
+  margin: 0 auto;
+  padding: 3em;
+}
 
-  background-color: yellow;
+.parallax {
+  min-height: 900px;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.parallax-image {
+  background-image: url("https://wallpaperaccess.com/full/6361597.jpg");
+  mask-image: linear-gradient(to bottom,
+      rgba(0, 0, 0, 1) 80%,
+      transparent 100%);
 }
