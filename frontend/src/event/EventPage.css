@@ -26,6 +26,7 @@
 }
 
 .parallax {
+  display: block;
   min-height: 900px;
   background-attachment: fixed;
   background-position: center;
@@ -39,4 +40,8 @@
   mask-image: linear-gradient(to bottom,
       rgba(0, 0, 0, 1) 80%,
       transparent 100%);
+}
+
+.join-button {
+  max-width: 300px;
 }

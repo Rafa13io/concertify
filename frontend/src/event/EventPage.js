@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, div } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 import { useCookies } from "react-cookie";
 import { useParams } from "react-router-dom";
 import "./EventPage.css";
@@ -11,7 +11,7 @@ export default function EventPage() {
   return (
     <Container fluid>
       <EventDetails eventId={id} />
-      {"user" in cookies ? <SignMeUp /> : ""}
+      {"user" in cookies ? <Join /> : ""}
       <PostList />
     </Container>
   );
@@ -24,16 +24,16 @@ const EventDetails = ({ eventId }) => {
     social_media: [],
     location: {
       id: -1,
-      name: "location",
-      address_line: "address",
-      postal_code: "00000",
-      country: "PL",
+      name: "",
+      address_line: "",
+      postal_code: "",
+      country: "",
     },
-    title: "title",
-    desc: "description",
+    title: "",
+    desc: "",
     picture: null,
-    start: "2024-01-29T04:10:20.904000+01:00",
-    end: "2025-03-01T23:33:05.736000+01:00",
+    start: "",
+    end: "",
   };
 
   const [eventData, setEventData] = useState(initialState);
@@ -81,7 +81,8 @@ const EventDetails = ({ eventId }) => {
         {eventData.location.address_line}
       </div>
       <div className="event-desc mx-4">
-        {eventData.desc}Lorem ipsum dolor sit amet, officia excepteur ex fugiat
+        {eventData.desc}
+        Lorem ipsum dolor sit amet, officia excepteur ex fugiat
         reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex
         esse exercitation amet. Nisi anim cupidatat excepteur officia.
         Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate
@@ -117,6 +118,17 @@ const EventDetails = ({ eventId }) => {
   );
 };
 
+const Join = () => {
+  return (
+    <Container>
+      <Row className="justify-content-xl-center mx-5">
+        <Button>Sign me up</Button>
+      </Row>
+    </Container>
+  )
+}
+
 const PostList = () => {
   return <div>Post List. TBI</div>;
 };
+
