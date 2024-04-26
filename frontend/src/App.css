@@ -109,9 +109,3 @@ head {
     height: 92%;
   }
 }
-
-.container-fluid {
-    display: block;
-    margin: 0;
-    padding: 0;
-}
