@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Col, Nav, Row } from "react-bootstrap";
+import { Button, Card, Col, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function PostList({ eventId }) {
@@ -33,10 +33,15 @@ export default function PostList({ eventId }) {
             <Nav.Link as="div" role="button">
               <Link to="#">
                 <Card>
+                  <Card.Img
+                    variant="top"
+                    src="https://media.timeout.com/images/103926031/image.jpg" /* src={post.picture} */
+                  />
                   <Card.Body>
                     <Card.Title>{post.title}</Card.Title>
                     <br />
                     <Card.Text>{post.desc}</Card.Text>
+                    <Button className="float-end">{post.vote_count}</Button>
                   </Card.Body>
                 </Card>
               </Link>
