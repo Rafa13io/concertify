@@ -53,3 +53,4 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+      working-directory: ./backend
