@@ -41,7 +41,7 @@ class TestEventViewSet(APITestCase):
             password='test'
         )
         self.token = f"Token {AuthToken.objects.create(user=self.user)[-1]}"
-        self.url = reverse('events:event-list')
+        self.url = reverse('events:event-lisat')
         self.url_details = reverse(
             'events:event-detail',
             kwargs={'pk': self.event1.id}
