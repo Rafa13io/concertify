@@ -51,7 +51,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r backend/requirements.txt
         python backend/fixtures/generate_fixtures.py --test
-    - name: Run Tests
+
+    - name: Run server
       run: |
-        python manage.py test
+        python -m pip install --upgrade pip
+        pip install -r backend/requirements.txt
+        python backend/fixtures/generate_fixtures.py --test
+        python manage.py migrate --no-input
+        celery -A concertify worker &
+        python manage.py runserver 0.0.0.0:8000 
       working-directory: ./backend
+    # - name: Run Tests
+    #   run: |
+    #     python manage.py test
+    #   working-directory: ./backend
