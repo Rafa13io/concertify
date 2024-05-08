@@ -58,7 +58,6 @@ jobs:
         pip install -r backend/requirements.txt
         python backend/fixtures/generate_fixtures.py --test
         python manage.py migrate --no-input
-        celery -A concertify worker &
         python manage.py runserver 0.0.0.0:8000 
       working-directory: ./backend
     # - name: Run Tests
