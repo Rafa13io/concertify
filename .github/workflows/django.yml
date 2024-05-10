@@ -53,11 +53,11 @@ jobs:
         python backend/fixtures/generate_fixtures.py --test
         echo "asdasdaaaaaaaaaaaa"
         ls -l backend/fixtures
-        chmod 777 backend/fixtures/test_fixture.json 
+        chmod 777 backend/fixtures/test_fixture.json
+        ls -l backend/fixtures
         python backend/manage.py test events
     - name: Tests
       run: python backend/manage.py test events
-      ls -l backend/fixtures
     - name: Run server
       run: |
         python -m pip install --upgrade pip
