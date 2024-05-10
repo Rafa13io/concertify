@@ -51,6 +51,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r backend/requirements.txt
         python backend/fixtures/generate_fixtures.py --test
+        echo "asdasdaaaaaaaaaaaa"
+        ls backend/fixtures
         python backend/manage.py test events
     - name: Tests
       run: python backend/manage.py test events
