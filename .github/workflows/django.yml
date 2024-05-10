@@ -52,7 +52,7 @@ jobs:
         pip install -r backend/requirements.txt
         python backend/fixtures/generate_fixtures.py --test
         echo "asdasdaaaaaaaaaaaa"
-        ll backend/fixtures
+        ls -l backend/fixtures
         chmod 777 backend/fixtures/test_fixture.json 
         python backend/manage.py test events
     - name: Tests
