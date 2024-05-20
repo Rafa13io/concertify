@@ -55,6 +55,11 @@ jobs:
       working-directory: ./backend
     - name: Test migrations
       run: python manage.py migrate --no-input
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_DB: "POSTGRES_DB"
       working-directory: ./backend
     - name: Create test_fixture.json
       run: python backend/fixtures/generate_fixtures.py --test
