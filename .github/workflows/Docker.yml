@@ -1,46 +1,42 @@
 name: Testing Docker
 
 on:
-  push:
-    branches: [ "master", 'backend' ]
   pull_request:
     branches: [ "master", 'backend' ]
 
 jobs:
   build_and_run_docker:
     name: Test Docker
-    docker_compose:
-      name: Test docker compose
-      runs-on: ubuntu-latest
-      env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-        POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-        POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-        POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-        REDIS_CELERY: ${{ secrets.REDIS_CELERY }}
-        REDIS_CACHE: ${{ secrets.REDIS_CACHE }}
-        DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
-      steps:
-      - uses: actions/checkout@v4
-      - name: Run Django tests
-        run: |
-          cat << EOF > .env
-          SECRET_KEY = "${SECRET_KEY}"
-          POSTGRES_DB = "${POSTGRES_DB}"
-          POSTGRES_USER = "${POSTGRES_USER}"
-          POSTGRES_PASSWORD = "${POSTGRES_PASSWORD}"
-          POSTGRES_HOST = "${POSTGRES_HOST}"
-          POSTGRES_PORT = "${POSTGRES_PORT}"
-          DJANGO_SETTINGS_MODULE = "${DJANGO_SETTINGS_MODULE}"
-          REDIS_PASS = "${REDIS_PASS}"
-          REDIS_CELERY = "${REDIS_CELERY}"
-          REDIS_CACHE = "${REDIS_CACHE}"
-          EOF
-      - name: Run docker compose build
-        run: docker compose build
-      - name: Run docker compose up
-        run: docker compose up --wait
-      - name: Run docker compose down
-        run: docker compose down
+    runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+      REDIS_CELERY: ${{ secrets.REDIS_CELERY }}
+      REDIS_CACHE: ${{ secrets.REDIS_CACHE }}
+      DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run Django tests
+      run: |
+        cat << EOF > .env
+        SECRET_KEY = "${SECRET_KEY}"
+        POSTGRES_DB = "${POSTGRES_DB}"
+        POSTGRES_USER = "${POSTGRES_USER}"
+        POSTGRES_PASSWORD = "${POSTGRES_PASSWORD}"
+        POSTGRES_HOST = "${POSTGRES_HOST}"
+        POSTGRES_PORT = "${POSTGRES_PORT}"
+        DJANGO_SETTINGS_MODULE = "${DJANGO_SETTINGS_MODULE}"
+        REDIS_PASS = "${REDIS_PASS}"
+        REDIS_CELERY = "${REDIS_CELERY}"
+        REDIS_CACHE = "${REDIS_CACHE}"
+        EOF
+    - name: Run docker compose build
+      run: docker compose build
+    - name: Run docker compose up
+      run: docker compose up --wait
+    - name: Run docker compose down
+      run: docker compose down
