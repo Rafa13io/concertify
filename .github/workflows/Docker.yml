@@ -1,6 +1,6 @@
 name: Testing Docker
 
-on: [push, pull]
+on: [push, pull_request]
 
 jobs:
   build_and_run_docker:
