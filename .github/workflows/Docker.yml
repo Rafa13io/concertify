@@ -1,8 +1,6 @@
 name: Testing Docker
 
-on:
-  pull_request:
-    branches: [ "master", 'backend' ]
+on: [push, pull]
 
 jobs:
   build_and_run_docker:
