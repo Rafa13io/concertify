@@ -59,9 +59,6 @@ jobs:
     #   working-directory: ./backend
     - name: Create test_fixture.json
       run: |
-        echo ||||||||||||||||||||||||||||||||||||||||||||||||||||||
-        echo $POSTGRES_HOST
-        echo ||||||||||||||||||||||||||||||||||||||||||||||||||||||
         python backend/fixtures/generate_fixtures.py --test
     - name: Run Django tests
       run: python manage.py test -v2
