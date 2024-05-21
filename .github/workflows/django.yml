@@ -46,7 +46,19 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: 3.10.12
-
+      run: |
+        cat << EOF > .env
+        SECRET_KEY = "${SECRET_KEY}"
+        POSTGRES_DB = "${POSTGRES_DB}"
+        POSTGRES_USER = "${POSTGRES_USER}"
+        POSTGRES_PASSWORD = "${POSTGRES_PASSWORD}"
+        POSTGRES_HOST = "${POSTGRES_HOST}"
+        POSTGRES_PORT = "${POSTGRES_PORT}"
+        DJANGO_SETTINGS_MODULE = "${DJANGO_SETTINGS_MODULE}"
+        REDIS_PASS = "${REDIS_PASS}"
+        REDIS_CELERY = "${REDIS_CELERY}"
+        REDIS_CACHE = "${REDIS_CACHE}"
+        EOF
     - name: show
       run: echo $POSTGRES_DB
     - name: Install dependencies
