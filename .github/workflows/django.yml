@@ -8,17 +8,6 @@ on:
 jobs:
   build_and_test_backend:
     name: Run, build and test backend
-    env:
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      POSTGRES_DB: "POSTGRES_DB"
-      POSTGRES_HOST: 127.0.0.1
-      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-      REDIS_CELERY: ${{ secrets.REDIS_CELERY }}
-      REDIS_CACHE: ${{ secrets.REDIS_CACHE }}
-      DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
-      DATABASE_HOST: "rafal"
     runs-on: ubuntu-latest
     services:
       database:
@@ -28,7 +17,7 @@ jobs:
         env:
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          POSTGRES_DB: "POSTGRES_DB"
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       redis_cache:
         image: redis:latest
@@ -46,7 +35,7 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: 3.10.12
-      run: |
+    - run: |
         cat << EOF > .env
         SECRET_KEY = "${SECRET_KEY}"
         POSTGRES_DB = "${POSTGRES_DB}"
@@ -59,24 +48,13 @@ jobs:
         REDIS_CELERY = "${REDIS_CELERY}"
         REDIS_CACHE = "${REDIS_CACHE}"
         EOF
-    - name: show
-      run: echo $POSTGRES_DB
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
       working-directory: ./backend
     - name: Test migrations
-      env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-        POSTGRES_DB: "POSTGRES_DB"
-        POSTGRES_HOST: 127.0.0.1
-      run: |
-        env
-        python manage.py migrate --no-input
-
+      run: python manage.py migrate --no-input
       working-directory: ./backend
     - name: Create test_fixture.json
       run: python backend/fixtures/generate_fixtures.py --test
