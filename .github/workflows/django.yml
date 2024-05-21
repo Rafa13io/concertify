@@ -8,6 +8,16 @@ on:
 jobs:
   build_and_test_backend:
     name: Run, build and test backend
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_HOST: database
+      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+      REDIS_CELERY: ${{ secrets.REDIS_CELERY }}
+      REDIS_CACHE: ${{ secrets.REDIS_CACHE }}
+      DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
     runs-on: ubuntu-latest
     services:
       database:
@@ -35,19 +45,6 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: 3.10.12
-    - run: |
-        cat << EOF > .env
-        SECRET_KEY = "${SECRET_KEY}"
-        POSTGRES_DB = "${POSTGRES_DB}"
-        POSTGRES_USER = "${POSTGRES_USER}"
-        POSTGRES_PASSWORD = "${POSTGRES_PASSWORD}"
-        POSTGRES_HOST = "${POSTGRES_HOST}"
-        POSTGRES_PORT = "${POSTGRES_PORT}"
-        DJANGO_SETTINGS_MODULE = "${DJANGO_SETTINGS_MODULE}"
-        REDIS_PASS = "${REDIS_PASS}"
-        REDIS_CELERY = "${REDIS_CELERY}"
-        REDIS_CACHE = "${REDIS_CACHE}"
-        EOF
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
