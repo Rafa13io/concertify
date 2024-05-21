@@ -13,7 +13,7 @@ jobs:
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-      POSTGRES_HOST: database
+      POSTGRES_HOST: 127.0.0.1
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
       REDIS_CELERY: ${{ secrets.REDIS_CELERY }}
       REDIS_CACHE: ${{ secrets.REDIS_CACHE }}
@@ -54,14 +54,18 @@ jobs:
       run: python manage.py migrate --no-input
       working-directory: ./backend
     - name: Create test_fixture.json
-      run: python backend/fixtures/generate_fixtures.py --test
+      run: |
+        echo ||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        echo $POSTGRES_HOST
+        echo ||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        python backend/fixtures/generate_fixtures.py --test
     - name: Run Django tests
       run: python manage.py test -v2
       working-directory: ./backend
   flake8:
     name: Flake8 Check
     runs-on: ubuntu-latest
-
+  
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
