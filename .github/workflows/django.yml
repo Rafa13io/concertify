@@ -52,9 +52,9 @@ jobs:
       working-directory: ./backend
     - name: Test migrations
       run: |
-        echo ||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        echo "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
         echo $POSTGRES_HOST
-        echo ||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        echo "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
         python manage.py migrate --no-input
       working-directory: ./backend
     - name: Create test_fixture.json
