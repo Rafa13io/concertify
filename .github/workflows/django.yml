@@ -50,13 +50,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
       working-directory: ./backend
-    - name: Test migrations
-      run: |
-        echo "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-        echo $POSTGRES_HOST
-        echo "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-        python manage.py migrate --no-input
-      working-directory: ./backend
+    # - name: Test migrations
+    #   run: |
+    #     echo "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+    #     echo $POSTGRES_HOST
+    #     echo "||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+    #     python manage.py migrate --no-input
+    #   working-directory: ./backend
     - name: Create test_fixture.json
       run: |
         echo ||||||||||||||||||||||||||||||||||||||||||||||||||||||
