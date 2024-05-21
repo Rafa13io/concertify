@@ -18,6 +18,7 @@ jobs:
       REDIS_CELERY: ${{ secrets.REDIS_CELERY }}
       REDIS_CACHE: ${{ secrets.REDIS_CACHE }}
       DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
+      DATABASE_HOST: "database"
     runs-on: ubuntu-latest
     services:
       database:
