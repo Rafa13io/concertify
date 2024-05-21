@@ -60,7 +60,9 @@ jobs:
         POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         POSTGRES_DB: "POSTGRES_DB"
         POSTGRES_HOST: 127.0.0.1
-      run: python manage.py migrate --no-input
+      run: |
+        env
+        python manage.py migrate --no-input
 
       working-directory: ./backend
     - name: Create test_fixture.json
