@@ -1,1 +1,1 @@
-Zarządzanie imprezami masowymi
+Zarządzanie imprezami masowymiaaaaa
