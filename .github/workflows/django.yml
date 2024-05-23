@@ -9,15 +9,15 @@ jobs:
   build_and_test_backend:
     name: Run, build and test backend
     env:
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-      POSTGRES_HOST: 127.0.0.1
-      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-      REDIS_CELERY: ${{ secrets.REDIS_CELERY }}
-      REDIS_CACHE: ${{ secrets.REDIS_CACHE }}
-      DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
+      SECRET_KEY: django-insecure-n$e-qm6#6@du0=+^v0d%eeg84l6=g!o$4c%awh+yh0--gpx_h8
+      POSTGRES_USER: POSTGRES_USER
+      POSTGRES_PASSWORD: POSTGRES_PASSWORD
+      POSTGRES_DB: POSTGRES_DB
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      REDIS_CELERY: localhost
+      REDIS_CACHE: localhost
+      DJANGO_SETTINGS_MODULE: concertify.settings
     runs-on: ubuntu-latest
     services:
       database:
@@ -25,9 +25,9 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: POSTGRES_USER
+          POSTGRES_PASSWORD: POSTGRES_PASSWORD
+          POSTGRES_DB: POSTGRES_DB
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       redis_cache:
         image: redis:latest
