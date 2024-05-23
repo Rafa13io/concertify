@@ -1,1 +1,2 @@
 Zarządzanie imprezami masowymi
+asd
