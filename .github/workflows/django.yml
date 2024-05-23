@@ -63,6 +63,16 @@ jobs:
     - name: Run Django tests
       run: python manage.py test -v2
       working-directory: ./backend
+      env:
+        SECRET_KEY: django-insecure-n$e-qm6#6@du0=+^v0d%eeg84l6=g!o$4c%awh+yh0--gpx_h8
+        POSTGRES_USER: POSTGRES_USER
+        POSTGRES_PASSWORD: POSTGRES_PASSWORD
+        POSTGRES_DB: POSTGRES_DB
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
+        REDIS_CELERY: localhost
+        REDIS_CACHE: localhost
+        DJANGO_SETTINGS_MODULE: concertify.settings
   flake8:
     name: Flake8 Check
     runs-on: ubuntu-latest
