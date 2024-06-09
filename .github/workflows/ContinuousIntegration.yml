@@ -33,4 +33,4 @@ jobs:
           END
       - name: Run deploy
         run: |
-          ssh target "cd concertify/ && sudo docker-compose down && git restore && git pull && ../setBackendAddress.sh && sudo docker-compose build && sudo docker-compose up -d --force-recreate"
+          ssh target "cd concertify/ && sudo docker-compose down && git restore . && git pull && ../setBackendAddress.sh && sudo docker-compose build && sudo docker-compose up -d --force-recreate"
